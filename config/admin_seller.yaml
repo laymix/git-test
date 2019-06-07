@@ -1,0 +1,17 @@
+app_admin_seller_index:
+  path: /sellers
+  methods: [GET]
+  defaults:
+    _controller: sylius.controller.customer:indexAction
+    _sylius:
+      section: admin
+      grid: app_admin_seller
+      template: SyliusAdminBundle:Crud:index.html.twig
+      vars:
+        subheader: Vendeurs
+        icon: users
+
+
+
+
+

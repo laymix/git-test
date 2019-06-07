@@ -1,0 +1,73 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en_US
+
+services:
+    # Default configuration for services in *this* file
+    _defaults:
+        # Automatically injects dependencies in your services
+        autowire: true
+
+        # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+
+        # Allows optimizing the container by removing unused services; this also means
+        # fetching services directly from the container via $container->get() won't work
+        public: false
+
+    # Makes classes in src/ available to be used as services;
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+
+    # Controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        autowire: false
+        tags: ['controller.service_arguments']
+
+    app.factory.customer:
+        class: App\Factory\CustomerFactory
+        decorates: sylius.factory.customer
+        arguments: ['@app.factory.customer.inner','@sylius.factory.shop_user']
+        public: false
+    app.form.type.product_review_image:
+        class: App\Form\Type\ProductReviewImageType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.product_review_image.class%']
+
+    app.listener.images_upload:
+        class: Sylius\Bundle\CoreBundle\EventListener\ImagesUploadListener
+        parent: sylius.listener.images_upload
+        autowire: true
+        autoconfigure: false
+        public: false
+        tags:
+            - { name: kernel.event_listener, event: sylius.product_review.pre_create, method: uploadImages }
+            - { name: kernel.event_listener, event: sylius.product_review.pre_update, method: uploadImages }
+    app.form.extension.type.product_review:
+        class: App\Form\Extension\ProductReviewTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Product\ProductReviewType }
+    app.registratioon_listener:
+        class: App\EventListener\UserRegistraListener
+        tags:
+                - { name: kernel.event_listener, event: sylius.customer.post_register, method: setUserRole }
+        arguments:
+                - "@sylius.manager.shop_user"
+                -
+
+
+    app.form.extension.type.customer_registration:
+        class: App\Form\Extension\CustomerRegistrationTypeExtension
+        tags:
+                - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType }
+
+    app.listener.admin.menu_builder:
+        class: App\Menu\AdminMenuListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }

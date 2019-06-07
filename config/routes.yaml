@@ -1,0 +1,52 @@
+sylius_invoicing_plugin_admin:
+  resource: "@SyliusInvoicingPlugin/Resources/config/app/routing/admin_invoicing.yml"
+  prefix: /admin
+
+
+app_admin_custom:
+  resource: "admin_seller.yaml"
+  prefix: /admin
+
+sylius_shop_account:
+    resource: "account.yml"
+    prefix: /account
+odiseo_sylius_banner_admin:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yml"
+    prefix: /admin
+    
+odiseo_sylius_banner_shop:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yml"
+    prefix: /{_locale}/banner
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$ 
+brille24_tierprice_bundle:
+  resource: '@Brille24SyliusTierPricePlugin/Resources/config/routing.yml'
+
+sylius_seller_register:
+  path: /sells-register
+  methods: [GET, POST]
+  defaults:
+    _controller: sylius.controller.customer:createAction
+    _sylius:
+      factory:
+        method: createSeller
+      template: "@SyliusShop/register.html.twig"
+      form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+      event: register
+      redirect:
+        route: sylius_shop_account_dashboard
+      flash: sylius.customer.register
+sylius_shop_register:
+  path: /register
+  methods: [GET, POST]
+  defaults:
+    _controller: sylius.controller.customer:createAction
+    _sylius:
+      factory:
+        method: createNewCustomer
+      template: "@SyliusShop/register.html.twig"
+      form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+      event: register
+      redirect:
+        route: sylius_shop_account_dashboard
+      flash: sylius.customer.register

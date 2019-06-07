@@ -1,0 +1,28 @@
+sylius_seller_register:
+  path: /sells-register
+  methods: [GET, POST]
+  defaults:
+    _controller: sylius.controller.customer:createAction
+    _sylius:
+      factory:
+        method: createSeller
+      template: "@SyliusShop/register_seller.html.twig"
+      form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+      event: register
+      redirect:
+        route: sylius_shop_account_dashboard
+      flash: sylius.customer.register
+sylius_shop_register:
+  path: /register
+  methods: [GET, POST]
+  defaults:
+    _controller: sylius.controller.customer:createAction
+    _sylius:
+      factory:
+        method: createNewCustomer
+      template: "@SyliusShop/register.html.twig"
+      form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+      event: register
+      redirect:
+        route: sylius_shop_account_dashboard
+      flash: sylius.customer.register

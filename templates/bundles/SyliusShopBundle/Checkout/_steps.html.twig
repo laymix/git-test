@@ -1,0 +1,27 @@
+{% if active is not defined or active == 'address' %}
+    {% set steps = {'address': 'active','complete': 'disabled'} %}
+{% else %}
+    {% set steps = {'address': 'completed', 'complete': 'active'} %}
+{% endif %}
+
+
+
+{% set steps_count = 'two' %}
+
+
+<div class="ui {{ steps_count }} steps">
+    <a class="{{ steps['address'] }} step" href="{{ path('sylius_shop_checkout_address') }}">
+        <i class="map icon"></i>
+        <div class="content">
+            <div class="title">{{ 'sylius.ui.address'|trans }}</div>
+            <div class="description">{{ 'sylius.ui.fill_in_your_billing_and_shipping_addresses'|trans }}</div>
+        </div>
+    </a>
+    <div class="{{ steps['complete'] }} step" href="{{ path('sylius_shop_checkout_complete') }}">
+        <i class="checkered flag icon"></i>
+        <div class="content">
+            <div class="title">{{ 'sylius.ui.complete'|trans }}</div>
+            <div class="description">{{ 'sylius.ui.review_and_confirm_your_order'|trans }}</div>
+        </div>
+    </div>
+</div>

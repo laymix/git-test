@@ -1,0 +1,4 @@
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+brille24_tierprice_bundle:
+    resource: '@Brille24SyliusTierPricePlugin/Resources/config/routing.yml'

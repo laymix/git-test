@@ -1,0 +1,37 @@
+sylius_grid:
+    grids:
+        brille24_admin_customer_option_grid:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOption
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                name:
+                    type: string
+                    label: sylius.ui.name
+                typeCode:
+                    type: twig
+                    label: sylius.ui.type
+                    options:
+                        template: SyliusUiBundle:Grid/Field:rawLabel.html.twig
+                required:
+                    type: twig
+                    label: brille24.ui.required
+                    options:
+                        template: SyliusUiBundle:Grid/Field:enabled.html.twig
+            filters:
+                code:
+                    type: string
+                    label: sylius.ui.code
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

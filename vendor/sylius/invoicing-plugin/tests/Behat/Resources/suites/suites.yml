@@ -1,0 +1,3 @@
+imports:
+    - admin/managing_invoices.yml
+    - customer.yml

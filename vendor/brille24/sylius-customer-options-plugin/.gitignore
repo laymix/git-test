@@ -1,0 +1,18 @@
+/vendor/
+/node_modules/
+
+/etc/build/*
+!/etc/build/.gitignore
+/composer.lock
+
+# Excluding the test application
+/tests/Application/yarn.lock
+/tests/Application/app/sqlite.db
+
+/web
+
+# Exluding individual behat config
+/behat.yml
+
+# PHP-Storm
+.idea/

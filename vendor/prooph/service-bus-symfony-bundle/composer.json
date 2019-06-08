@@ -1,0 +1,109 @@
+{
+  "name": "prooph/service-bus-symfony-bundle",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "type": "symfony-bundle",
+  "homepage": "http://getprooph.org/",
+  "authors": [
+    {
+      "name": "Alexander Miertsch",
+      "email": "contact@prooph.de",
+      "homepage": "http://www.prooph.de"
+    },
+    {
+      "name": "Sascha-Oliver Prolic",
+      "email": "saschaprolic@googlemail.com"
+    },
+    {
+      "name": "Malte Blättermann",
+      "email": "malte.blaettermann@googlemail.com"
+    },
+    {
+      "name": "Ralf Junghanns",
+      "email": "ralf.junghanns@gmail.com"
+    },
+    {
+      "name": "Oskar Pfeifer-Bley",
+      "email": "oskar@programming-php.net"
+    }
+  ],
+  "keywords": [
+    "prooph",
+    "Messaging",
+    "CQRS",
+    "Symfony",
+    "Bundle",
+    "Service Bus",
+    "Event Bus",
+    "Query Bus",
+    "Message Bus",
+    "DDD",
+    "PHP"
+  ],
+  "support": {
+    "issues": "https://github.com/prooph/service-bus-symfony-bundle/issues",
+    "source": "https://github.com/prooph/service-bus-symfony-bundle",
+    "docs": "http://getprooph.org/"
+  },
+  "autoload": {
+    "psr-4": {
+      "Prooph\\Bundle\\ServiceBus\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ProophTest\\Bundle\\ServiceBus\\": "test"
+    }
+  },
+  "require": {
+    "php": "^7.1",
+    "symfony/config": "~3.3|^4.0",
+    "symfony/dependency-injection": "~3.3|^4.0",
+    "symfony/http-kernel": "~3.3|^4.0",
+    "prooph/service-bus": "~6.0",
+    "psr/container": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0",
+    "prooph/bookdown-template": "^0.2.3",
+    "satooshi/php-coveralls": "^1.0",
+    "phpspec/prophecy": "^1.7",
+    "react/promise": "^2.5",
+    "friendsofphp/php-cs-fixer": "~2.0",
+    "prooph/php-cs-fixer-config": "^0.2",
+    "symfony/framework-bundle": "~3.3|^4.0",
+    "phpstan/phpstan": "^0.9"
+  },
+  "suggest": {
+      "symfony/stopwatch": "~3.3|^4.0",
+      "symfony/framework-bundle": "~3.3|^4.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@cs",
+      "@test"
+    ],
+    "cs": "php-cs-fixer fix -v --diff --dry-run",
+    "cs-fix": "php-cs-fixer fix -v --diff",
+    "test": "phpunit --no-coverage",
+    "test-coverage": "phpunit",
+    "docs": "bookdown doc/bookdown.json"
+  },
+  "archive": {
+    "exclude": [
+      ".coveralls.yml",
+      ".travis.yml",
+      "benchmark",
+      "build",
+      "phpunit.xml*",
+      "test"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="prooph_service_bus.handle_command_invoke_strategy" class="Prooph\ServiceBus\Plugin\InvokeStrategy\HandleCommandStrategy" />
+        <service id="prooph_service_bus.finder_invoke_strategy" class="Prooph\ServiceBus\Plugin\InvokeStrategy\FinderInvokeStrategy" />
+        <service id="prooph_service_bus.on_event_invoke_strategy" class="Prooph\ServiceBus\Plugin\InvokeStrategy\OnEventStrategy" />
+        <service id="prooph_service_bus.message_factory_plugin" class="Prooph\ServiceBus\Plugin\MessageFactoryPlugin" public="false" abstract="true" />
+        <service id="prooph_service_bus.message_factory" class="Prooph\Common\Messaging\FQCNMessageFactory" />
+
+        <service id="prooph_service_bus.plugin.service_locator" class="Prooph\ServiceBus\Plugin\ServiceLocatorPlugin" abstract="true" public="false"/>
+
+        <service id="prooph_service_bus.plugin.psr_logger" class="Prooph\Bundle\ServiceBus\Plugin\PsrLoggerPlugin" abstract="true" public="false"/>
+        <service id="prooph_service_bus.plugin.data_collector" class="Prooph\Bundle\ServiceBus\Plugin\DataCollectorPlugin" abstract="true" public="false"/>
+        <service id="prooph_service_bus.plugin.symfony_data_collector" class="Prooph\Bundle\ServiceBus\Plugin\DataCollector" abstract="true" public="false">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="prooph_service_bus.async_switch_message_router" class="Prooph\ServiceBus\Plugin\Router\AsyncSwitchMessageRouter" />
+
+        <service id="prooph_service_bus.message_context_factory" class="Prooph\Bundle\ServiceBus\MessageContext\ContextFactory" abstract="true" public="false" />
+        <service id="prooph_service_bus.message_data_converter" class="Prooph\Bundle\ServiceBus\MessageContext\DefaultMessageDataConverter" abstract="true" public="false" />
+        <service id="prooph_service_bus.message_converter" class="Prooph\Common\Messaging\NoOpMessageConverter" public="false" />
+    </services>
+</container>

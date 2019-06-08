@@ -1,0 +1,22 @@
+prooph_service_bus:
+  event_buses:
+    main_event_bus:
+      message_factory: 'prooph_service_bus.message_factory'
+      router:
+        type: 'prooph_service_bus.event_bus_router'
+        routes:
+          'Prooph\ProophessorDo\Model\Todo\Event\TodoWasPosted':
+            - 'Prooph\ProophessorDo\Projection\Todo\TodoProjector'
+            - 'Prooph\ProophessorDo\Projection\User\UserProjector'
+      plugins:
+        - 'prooph_service_bus.on_event_invoke_strategy'
+
+    # uses default values
+    second_event_bus:
+      plugins:
+        - 'prooph_service_bus.on_event_invoke_strategy'
+        - 'prooph_service_bus.on_event_invoke_strategy'
+      router:
+        routes:
+          'Prooph\ProophessorDo\Model\Todo\Event\TodoWasPosted':
+            - 'Prooph\ProophessorDo\Projection\Todo\TodoProjector'

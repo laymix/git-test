@@ -1,0 +1,15 @@
+imports:
+    - { resource: "@BitBagSyliusElasticsearchPlugin/Resources/config/services.yml" }
+    - { resource: "@BitBagSyliusElasticsearchPlugin/Resources/config/indexes/bitbag_shop_products.yml" }
+    - { resource: "@BitBagSyliusElasticsearchPlugin/Resources/config/indexes/bitbag_option_taxons.yml" }
+    - { resource: "@BitBagSyliusElasticsearchPlugin/Resources/config/indexes/bitbag_attribute_taxons.yml" }
+
+parameters:
+    bitbag_es_host: localhost
+    bitbag_es_port: 9200
+
+fos_elastica:
+    clients:
+        default:
+            host: "%bitbag_es_host%"
+            port: "%bitbag_es_port%"

@@ -1,0 +1,19 @@
+imports:
+  - { resource: "services/controller.xml" }
+  - { resource: "services/eventListener.xml" }
+  - { resource: "services/repositories.xml" }
+  - { resource: "services/factory.xml" }
+  - { resource: "services/forms.xml" }
+  - { resource: "services/menuListener.xml" }
+  - { resource: "services/services.xml" }
+  - { resource: "services/fixtures.xml" }
+  - { resource: "services/validator.xml" }
+
+services:
+  # Sonata
+  brille24_customer_options.block_event_listener.admin.layout.javascripts:
+      class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+      arguments:
+          - '@@Brille24SyliusCustomerOptionsPlugin/Resources/views/Product/Tab/_javascripts.html.twig'
+      tags:
+          - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }

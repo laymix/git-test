@@ -1,0 +1,15 @@
+{
+  "title": "prooph service-bus Symfony bundle",
+  "content": [
+    {"intro": "../README.md"},
+    {"getting_started": "getting_started.md"},
+    {"routing": "routing.md"},
+    {"plugins": "plugins.md"},
+    {"profiler": "profiler.md"},
+    {"configuration_reference": "configuration_reference.md"}
+  ],
+  "target": "./html",
+  "tocDepth": 2,
+  "template": "../vendor/prooph/bookdown-template/templates/main.php",
+  "copyright": "Copyright (c) 2017 <a href=\"http://getprooph.org/\" title=\"prooph software GmbH\">prooph software GmbH</a> <br/> Powered by <a href=\"https://github.com/tobiju/bookdown-bootswatch-templates\" title=\"Visit project to generate your own docs\">Bookdown Bootswatch Templates</a>"
+}

@@ -1,10 +1,10 @@
 #
-#/public/assets
+/public/assets
 /public/css
 /public/js
 /public/media
 
-#node_modules
+node_modules
 
 /etc/build/*
 !/etc/build/.gitignore
@@ -20,7 +20,7 @@
 /.env.*.local
 #/.env.local
 /.env.local.php
-/public/bundles
+#/public/bundles
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

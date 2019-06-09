@@ -1,0 +1,29 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service class="Brille24\SyliusCustomerOptionsPlugin\Repository\CustomerOptionRepository"
+                 id="brille24.customer_options_plugin.repository.customer_option" >
+            <factory service="doctrine.orm.default_entity_manager" method="getRepository" />
+            <argument>Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOption</argument>
+        </service>
+
+        <service class="Brille24\SyliusCustomerOptionsPlugin\Repository\CustomerOptionValueRepository"
+                 id="brille24.customer_options_plugin.repository.customer_option_value" >
+            <factory service="doctrine.orm.default_entity_manager" method="getRepository" />
+            <argument>Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionValue</argument>
+        </service>
+
+        <service
+                class="Sylius\Component\Resource\Repository\RepositoryInterface"
+                 id="brille24.customer_options_plugin.repository.customer_option_value_price"
+        >
+            <factory service="doctrine.orm.default_entity_manager" method="getRepository" />
+            <argument>Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionValuePrice</argument>
+        </service>
+
+        <service class="Brille24\SyliusCustomerOptionsPlugin\Repository\CustomerOptionGroupRepository"
+                 id="brille24.customer_options_plugin.repository.customer_option_group" >
+            <factory service="doctrine.orm.default_entity_manager" method="getRepository" />
+            <argument>Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionGroup</argument>
+        </service>
+    </services>
+</container>

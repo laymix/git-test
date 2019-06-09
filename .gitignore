@@ -1,9 +1,9 @@
-/public/assets
-/public/css
-/public/js
-/public/media
+#/public/assets
+#/public/css
+#/public/js
+#/public/media
 
-node_modules
+#node_modules
 
 /etc/build/*
 !/etc/build/.gitignore

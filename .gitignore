@@ -3,7 +3,7 @@
 /public/js
 /public/media
 
-/node_modules
+node_modules
 
 /etc/build/*
 !/etc/build/.gitignore
